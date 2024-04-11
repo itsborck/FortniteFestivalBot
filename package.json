@@ -7,7 +7,7 @@
     "test": "node ."
   },
   "keywords": [],
-  "author": "@borck#0001",
+  "author": "borck",
   "license": "ISC",
   "dependencies": {
     "@discordjs/core": "^1.0.0",
@@ -17,10 +17,12 @@
     "canvas": "^2.11.2",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
+    "colors": "^1.4.0",
     "discord-api-types": "^0.37.38",
     "discord.js": "^14.12.1",
     "dotenv": "^16.0.3",
     "libsodium-wrappers": "^0.7.13",
+    "moment": "^2.30.1",
     "node-fetch": "^3.3.2",
     "opusscript": "^0.0.8",
     "sodium-native": "^4.0.4",

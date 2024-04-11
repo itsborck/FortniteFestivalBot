@@ -34,7 +34,7 @@ module.exports = {
       const track = Object.values(data).find(track => track.track && track.track.tt.replace(/[^\w\s]/gi, '').toLowerCase().includes(keyword))
       if (track) {
         const embed = new EmbedBuilder()
-          .setTitle(`🎶 ${track.track.tt} (${track.track.ry}) | ${track.track.an}`)
+          .setTitle(`${track.track.tt} (${track.track.ry}) | ${track.track.an}`)
           .setDescription(
             `⌛ Duration: ${String(
               `${Math.floor(track.track.dn / 60)}:${(
