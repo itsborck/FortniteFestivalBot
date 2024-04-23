@@ -2,7 +2,7 @@ const { EmbedBuilder, ActivityType } = require('discord.js')
 const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
-const { channelId } = require('../../../config.json')
+const { newTracksChannel } = require('../../../config.json')
 
 function generateDifficultyBar(difficulty) {
   const filledSquare = '▰'
@@ -30,7 +30,7 @@ async function checkNewTracks(client) {
     track => !lastTrackList.includes(track.track.tt),
   )
   if (newTracks.length > 0) {
-    const channel = client.channels.cache.get(channelId)
+    const channel = client.channels.cache.get(newTracksChannel)
     await sendNewTracks(newTracks, channel)
   }
 
@@ -73,19 +73,23 @@ module.exports = client => {
   client.on('ready', () => {
     checkNewTracks(client)
 
-    fs.readFile(path.join(__dirname, '../../../tracks.txt'), 'utf-8', (err, data) => {
-      if (err) {
-        console.error(`Error reading tracks.txt: ${err}`)
-        return
-      }
+    fs.readFile(
+      path.join(__dirname, '../../../tracks.txt'),
+      'utf-8',
+      (err, data) => {
+        if (err) {
+          console.error(`Error reading tracks.txt: ${err}`)
+          return
+        }
 
-      const tracks = data.split('\n')
-      const trackCount = tracks.length
+        const tracks = data.split('\n')
+        const trackCount = tracks.length
 
-      client.user.setActivity({
-        name: `${trackCount} Jam Tracks`,
-        type: ActivityType.Listening,
-      })
-    })
+        client.user.setActivity({
+          name: `${trackCount} Jam Tracks`,
+          type: ActivityType.Listening,
+        })
+      },
+    )
   })
 }

@@ -31,7 +31,14 @@ module.exports = {
       responseType: 'json',
     }).then(response => {
       const data = response.data
-      const track = Object.values(data).find(track => track.track && track.track.tt.replace(/[^\w\s]/gi, '').toLowerCase().includes(keyword))
+      const track = Object.values(data).find(
+        track =>
+          track.track &&
+          track.track.tt
+            .replace(/[^\w\s]/gi, '')
+            .toLowerCase()
+            .includes(keyword),
+      )
       if (track) {
         const embed = new EmbedBuilder()
           .setTitle(`${track.track.tt} (${track.track.ry}) | ${track.track.an}`)
@@ -49,7 +56,7 @@ module.exports = {
             Bass: ${generateDifficultyBar(track.track.in.ba)}
             🎚️ Pro Difficulty Chart:
             Pro Lead: ${generateDifficultyBar(track.track.in.pg)}
-            Pro Bass: ${generateDifficultyBar(track.track.in.pb)}`
+            Pro Bass: ${generateDifficultyBar(track.track.in.pb)}`,
           )
           .setImage(track.track.au)
           .setFooter({ text: 'Made with ❤️ by borck' })
