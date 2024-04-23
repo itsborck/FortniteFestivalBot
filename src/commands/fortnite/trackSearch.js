@@ -46,7 +46,10 @@ module.exports = {
             Lead: ${generateDifficultyBar(track.track.in.gr)}
             Drums: ${generateDifficultyBar(track.track.in.ds)}
             Vocals: ${generateDifficultyBar(track.track.in.vl)}
-            Bass: ${generateDifficultyBar(track.track.in.ba)}`
+            Bass: ${generateDifficultyBar(track.track.in.ba)}
+            🎚️ Pro Difficulty Chart:
+            Pro Lead: ${generateDifficultyBar(track.track.in.pg)}
+            Pro Bass: ${generateDifficultyBar(track.track.in.pb)}`
           )
           .setImage(track.track.au)
           .setFooter({ text: 'Made with ❤️ by borck' })
