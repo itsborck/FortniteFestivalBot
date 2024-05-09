@@ -73,23 +73,25 @@ module.exports = client => {
   client.on('ready', () => {
     checkNewTracks(client)
 
-    fs.readFile(
-      path.join(__dirname, '../../../tracks.txt'),
-      'utf-8',
-      (err, data) => {
-        if (err) {
-          console.error(`Error reading tracks.txt: ${err}`)
-          return
-        }
+    const trackFilePath = path.join(__dirname, '../../../tracks.txt')
 
-        const tracks = data.split('\n')
-        const trackCount = tracks.length
+    fs.watch(trackFilePath, (eventType, filename) => {
+      if (eventType === 'change') {
+        fs.readFile(trackFilePath, 'utf-8', (err, data) => {
+          if (err) {
+            console.error(`Error reading tracks.txt: ${err}`)
+            return
+          }
 
-        client.user.setActivity({
-          name: `${trackCount} Jam Tracks`,
-          type: ActivityType.Listening,
+          const tracks = data.split('\n')
+          const trackCount = tracks.length
+
+          client.user.setActivity({
+            name: `${trackCount} Jam Tracks`,
+            type: ActivityType.Listening,
+          })
         })
-      },
-    )
+      }
+    })
   })
 }
